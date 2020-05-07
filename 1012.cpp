@@ -1,46 +1,56 @@
-#include <cstdio>
+#include <iostream>
+#include <string.h>
 using namespace std;
-const int move_x[4]={1, -1, 0, 0};
-const int move_y[4]={ 0, 0, 1, -1};
 
-bool map[51][52]={}, visit[52][52]={};
-int count;
-int dfs(int x, int y)
-{
-	for(int i=0; i<4; i++)
-	{
-		int nx=x+move_x[i], ny=y+move_y[i];
-		if(map[nx][ny] && !visit[nx][ny])
-			visit[nx][ny]=true, dfs(nx, ny);
-	}
+int dy[4]={1,-1,0,0};
+int dx[4]={0,0,1,-1};
+int M,N,K;
+int arr[50][50]={0};
+int visited[50][50]={0};
+
+void dfs(int y,int x){
+
+    for(int i=0;i<4;i++){
+        int ny=y+dy[i];
+        int nx=x+dx[i];
+
+        if(ny<0 || ny>=N || nx<0 || nx>=M)
+            continue;
+
+        if(arr[ny][nx] && !visited[ny][nx]){
+            visited[ny][nx]++;
+            dfs(ny,nx);
+        }
+    }
 }
-int main()
-{
-	int t, row, col, n;
-	scanf("%d", &t);
-	while(t--)
-	{
-		scanf("%d %d %d", &row, &col, &n);
-		for(int i=1; i<=row; i++)
-			for(int j=1; j<=col; j++)
-				map[i][j]=visit[i][j]=false;
+int main(){
+    int T,x,y;
+    cin>>T;
 
-		while(n--)
-		{
-			int x, y;
-			scanf("%d %d", &x, &y);
-			map[x+1][y+1]=true;
-		}
+    for(int testCase=0;testCase<T;testCase++){
+        scanf("%d %d %d",&M,&N,&K);
 
-		for(int i=1; i<=row; i++)
-			for(int j=1; j<=col; j++)
-			{
-				if(map[i][j] && !visit[i][j])
-					visit[i][j]=true, count++, dfs(i, j);
-			}
+        memset(arr,0,sizeof(arr));
+        memset(visited,0,sizeof(visited));
 
-		printf("%d\n", count);
-		count=0;
-	}
-	return 0;
+        int ans=0;
+
+        for(int i=0;i<K;i++){
+            scanf("%d %d",&x,&y);
+            arr[y][x]=1;
+        }
+
+        for(int i=0;i<N;i++)
+            for(int j=0;j<M;j++)
+                if(arr[i][j] && !visited[i][j]){
+
+                    ans++;
+                    visited[i][j]++;
+                    dfs(i,j);
+
+                }
+
+        cout<<ans<<endl;
+    }
+    return 0;
 }
