@@ -14,6 +14,6 @@ int main()
 	for(int i=0; i<26; i++)
 	{
 		if(arr[i]==cnt)
-			printf("%c", i);
+			printf("%c", i+'a');
 	}
 }
