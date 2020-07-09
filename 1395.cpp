@@ -38,7 +38,14 @@ void range_update(int s, int t, int p, int x, int y)
 	st[p]=st[p<<1]+st[(p<<1)+1];
 }
 
-
+int query(int s, int t, int p, int x, int y)
+{
+	lazy_update(y-x+1, p);
+	if(s>y || t<x) return 0;
+	if(s<=x && t>=y) return st[p];
+	int mid=x+y>>1;
+	return query(s, t, p<<1, x, mid)+query(s, t, (p<<1)+1, mid+1, y);
+}
 
 int main()
 {
