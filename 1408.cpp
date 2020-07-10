@@ -13,5 +13,10 @@ int main()
 	if (cT > sT)
 		sT += 24 * 60 * 60;
 
+	rT = sT - cT;
+	rh = rT / 3600, rT %= 3600;
+	rm = rT / 60, rT %= 60;
+	rs = rT;
+
 	printf("%02d:%02d:%02d", rh, rm, rs);
 }
