@@ -15,6 +15,7 @@ int main()
 	for (char i : str)
 		strl.push_back(i);
 
+	auto cosor = strl.end();
 	while (n--)
 	{
 		cin >> cmd;
