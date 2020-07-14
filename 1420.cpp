@@ -32,6 +32,36 @@ bool bfs(){
     return level[T] != -1;
 }
 
+int dfs(int cur, int flow){
+    if(cur == T)    return flow;
+    for(int &i = work[cur]; i < adj[cur].size(); i++){
+        int next = adj[cur][i].v;
+        int cap = adj[cur][i].cap;
+        int rev = adj[cur][i].rev;
+        if(cap > 0 && level[next] == level[cur] + 1){
+            int cf = dfs(next, min(flow, cap));
+            if(cf > 0){
+                adj[cur][i].cap -= cf;
+                adj[next][rev].cap += cf;
+                return cf;
+            }
+        }
+    }
+    return 0;
+}
+
+int solve(){
+    int ret = 0;
+    while(bfs()){
+        memset(work, 0, sizeof(work));
+        while(true){
+            int flow = dfs(S, 1e9);
+            if(flow == 0)break;
+            ret += flow;
+        }
+    }
+    return ret;
+}
 
 void addEdge(int u, int v, int cap){
     adj[u].emplace_back(v, cap, adj[v].size());
