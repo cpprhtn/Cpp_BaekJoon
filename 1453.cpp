@@ -11,10 +11,8 @@ int main()
 		scanf("%d", &num);
 		if (arr[num])
 			ans++;
-
 		else
-			arr[num] = 0;
-
+			arr[num] = 1;
 	}
 
 	printf("%d", ans);
