@@ -37,7 +37,7 @@ int main()
 
 	printf("%d", count);
 }
-
+/*cpp17 적용한 나름 숏코딩*/
 #include <bits/stdc++.h>
 using namespace std;
 
