@@ -32,6 +32,6 @@ int main()
 			cin >> map[i][j];
 		}
 	}
-	v[1][1] = 1, dp[1][1] = 1;
+	dp[1][1] = 1;
 	cout << solve(n, m);
 }
