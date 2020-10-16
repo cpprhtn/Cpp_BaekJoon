@@ -2,16 +2,16 @@
 
 int main()
 {
-	int a;
-	int max = 0, min = 100000;
-	scanf("%d", &a);
-
-	for(int i = 0; i < a; i++)
+	int max=-1000001, min=1000001;
+	int no_data, num;
+	scanf("%d", &no_data);
+	for(int i=0; i<no_data; i++)
 	{
-		int temp;
-		scanf("%d",&temp);
-		if (temp > max) max = temp;
-		if (temp < min) min = temp;
+		scanf("%d", &num);
+		max=num>max?num:max;
+		min=num<min?num:min;
 	}
-	printf("%d %d",min, max);
+
+	printf("%d %d\n", min, max);
+	return 0;
 }
