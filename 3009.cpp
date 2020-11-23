@@ -16,9 +16,9 @@ int main()
 		if (i.second == 1)
 			a = i.first;
 
-	for (auto i : dy)
-		if (i.second == 1)
-			b = i.first;
+    for (auto i : dy)
+        if (i.second == 1)
+            b = i.first;
 
-	printf("%d %d", a, b);
+    printf("%d %d", a, b);
 }
