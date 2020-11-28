@@ -1,26 +1,16 @@
-#include <iostream>
-#include <vector>
-using namespace std;
-
-int Fi(int num)
+#include <cstdio>
+int fi(int num) 
 {
-
-   if(num == 1)
-      return 1;
-   else if( num ==2 )
-      return 1;
-   else
-      return Fi(num-1)+Fi(num-2);
-
+    if(num == 0)
+        return 0;
+    if(num == 1)
+        return 1;
+    return fi(num-2) + fi(num-1);
 }
 
-int main() {
-
-   int num;
-   cin >>num;
-
-   cout<< Fi(num)<<endl;
-
-   return 0;
-
+int main() 
+{
+    int num;
+    scanf("%d",&num);
+    printf("%d",fi(num));
 }
